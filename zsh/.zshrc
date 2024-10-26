@@ -65,19 +65,51 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="$HOME/oh-my-zsh-custom"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if command -v /home/linuxbrew/.linuxbrew/bin/brew &> /dev/null; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    export FZF_BASE=/home/linuxbrew/.linuxbrew/bin
+fi
 
 source <(fzf --zsh)
 
-export FZF_BASE=/home/linuxbrew/.linuxbrew/bin
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git simcustom z fzf extract tldr grails golang zsh-autosuggestions zsh-syntax-highlighting kubectl tmux
-)
+
+# Define an array of required commands
+required_commands=(tmux fzf ng)
+
+# Check each command and load related configurations only if the command is available
+for cmd in "${required_commands[@]}"; do
+    if command -v "$cmd" &> /dev/null; then
+        case $cmd in
+            tmux)
+                plugins+=("tmux")
+                ;;
+            fzf)
+                # Load FZF base or any other FZF-specific configuration
+                export FZF_BASE=/home/linuxbrew/.linuxbrew/bin
+                ;;
+            ng)
+                # Load Angular CLI autocompletion
+                source <(ng completion script)
+                ;;
+        esac
+    fi
+done
+
+# Additional plugins
+plugins+=("git" "simcustom" "z" "extract" "tldr" "grails" "golang" "zsh-autosuggestions" "zsh-syntax-highlighting" "kubectl")
+
+# Assign plugins to ZSH plugins
+plugins=("${plugins[@]}")
+
+
+#plugins=(
+ # git simcustom z fzf extract tldr grails golang zsh-autosuggestions zsh-syntax-highlighting kubectl tmux
+#)
 
 
 #Plugin specific settings
@@ -131,9 +163,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# Load Angular CLI autocompletion.
-source <(ng completion script)
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
