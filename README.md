@@ -9,7 +9,7 @@ Choose the setup script based on your operating system and follow the steps belo
 
 ### Docker Image
 
-**Docker image available at **
+**Docker image available at**
    ```bash
       docker run -it simranchawla/zsh:latest
    ```
