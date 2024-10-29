@@ -7,6 +7,13 @@ This repository contains configuration files for Neovim, Zsh, and other tools. Y
 
 Choose the setup script based on your operating system and follow the steps below to download and run it.
 
+### Docker Image
+
+**Docker image available at **
+   ```bash
+      docker run -it simranchawla/zsh:latest
+   ```
+
 ### Linux/macOS
 
 1. **Download the `setup.sh` script:**
