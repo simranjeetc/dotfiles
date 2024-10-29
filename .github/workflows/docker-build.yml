@@ -27,5 +27,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: simranchawla/zplug:latest  # Replace with your Docker Hub repo
+          tags: simranchawla/zsh:latest  # Replace with your Docker Hub repo
 
