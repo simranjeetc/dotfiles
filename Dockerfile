@@ -8,21 +8,32 @@ ARG ZSH_CUSTOM_DIR=/home/u1and0/oh-my-zsh-custom
 ARG PLUGIN_DIR=$ZSH_CUSTOM_DIR/plugins
 
 # Copy setup script into the container
-COPY setup.sh /setup.sh
+#COPY setup.sh /home/u1and0/setup.sh
 
-# Switch to root user to install necessary packages
+# Switch to root user to install necessary packages and run setup
 USER root
-RUN pacman -Sy --noconfirm git
+RUN pacman -Sy --noconfirm git tmux
 
-# Clone the dotfiles repo and run the setup script
 USER u1and0
-RUN git clone "$REPO_URL" dotfiles && \
-    chmod +x /setup.sh && \
-    /setup.sh && \
-    rm -rf dotfiles /setup.sh
 
-# Set default shell to zsh for the user
+WORKDIR /home/u1and0
+
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+RUN git clone "$REPO_URL" dotfiles && \
+    sh dotfiles/setup.sh && \
+    rm -rf dotfiles
+
+# Trigger Neovim to install plugins in headless mode
+RUN nvim --headless +Lazy! +qall
+
+# Set default shell and switch back to u1and0 user
+USER u1and0
+
 SHELL ["/usr/bin/zsh", "-c"]
+
+# Run zplug installation in a non-interactive shell
+#RUN zsh -ic "source ~/.zshrc && zplug install"
 
 # Default command
 CMD ["/usr/bin/zsh"]
