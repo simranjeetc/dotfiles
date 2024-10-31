@@ -27,6 +27,9 @@ RUN git clone "$REPO_URL" dotfiles && \
 # Trigger Neovim to install plugins in headless mode
 RUN nvim --headless +Lazy! +qall
 
+# Install Mason language servers
+RUN nvim --headless -c "MasonInstall lua-language-server jdtls pyright typescript-language-server java-debug-adapter java-test" -c "qall"
+
 # Set default shell and switch back to u1and0 user
 USER u1and0
 
