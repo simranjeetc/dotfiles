@@ -170,3 +170,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 source "$ZSH_CUSTOM/plugins/common-aliases.zsh"
 
+[ -f $(brew --prefix)/opt/fzf/shell/completion.zsh ] && source $(brew --prefix)/opt/fzf/shell/completion.zsh
+[ -f $(brew --prefix)/opt/fzf/shell/key-bindings.zsh ] && source $(brew --prefix)/opt/fzf/shell/key-bindings.zsh
+
+
