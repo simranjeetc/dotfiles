@@ -23,6 +23,12 @@ mkdir -p "$TARGET_DIR"
 cp -r dotfiles/nvim/* "$TARGET_DIR"
 echo "nvim configuration copied successfully."
 
+# Copy lunarVim configuraion files
+# echo "Copying lunarVim configuration to $HOME/.config/lvim"
+# mkdir -p "$HOME/.config/lvim"
+# cp -r dotfiles/lunarVim/* "$HOME/.config/lvim"
+# echo "lunarVim configuration copied successfully" 
+
 # Copy .zshrc
 echo "Copying .zshrc to $HOME directory..."
 cp dotfiles/zsh/.zshrc "$HOME/.zshrc"
