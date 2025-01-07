@@ -25,9 +25,9 @@ xcopy /E /I /Y dotfiles\nvim\* "%TARGET_DIR%"
 echo nvim configuration copied successfully.
 
 :: Copy .zshrc
-echo Copying .zshrc to %USERPROFILE% directory...
-copy /Y dotfiles\zsh\.zshrc "%USERPROFILE%\.zshrc"
-echo .zshrc copied successfully.
+echo Copying zsh configurations to %USERPROFILE% directory...
+copy /Y dotfiles\zsh\zshrc "%USERPROFILE%\.zshrc"
+echo Copied zsh configurations successfully.
 
 :: Copy oh-my-zsh custom configurations
 echo Copying oh-my-zsh custom configurations to %ZSH_CUSTOM_DIR%...

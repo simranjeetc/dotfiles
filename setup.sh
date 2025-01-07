@@ -30,9 +30,9 @@ echo "nvim configuration copied successfully."
 # echo "lunarVim configuration copied successfully" 
 
 # Copy .zshrc
-echo "Copying .zshrc to $HOME directory..."
-cp dotfiles/zsh/.zshrc "$HOME/.zshrc"
-echo ".zshrc copied successfully."
+echo "Copying zsh related configuration files to $HOME directory..."
+cp dotfiles/zsh/zshrc "$HOME/.zshrc"
+echo "Copied zsh configurations successfully."
 
 # Copy oh-my-zsh custom configurations
 echo "Copying oh-my-zsh custom configurations to $ZSH_CUSTOM_DIR..."
