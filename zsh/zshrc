@@ -155,9 +155,12 @@ export GOPATH=$HOME/go
 export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # add custom scripts to the PATH
-export PATH=$PATH:/home/simran/codebase/simranjeetc/local-cli/
+path+=("$HOME/.local/bin")
 
-path+=('/home/simran/.local/bin')
+# Add Rancher Desktop to PATH if installed
+if [ -d "$HOME/.rd/bin" ]; then
+  path+=("$HOME/.rd/bin")
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
