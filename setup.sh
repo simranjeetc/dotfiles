@@ -26,7 +26,7 @@ echo "nvim configuration copied successfully."
 # Copy lunarVim configuraion files
 # echo "Copying lunarVim configuration to $HOME/.config/lvim"
 # mkdir -p "$HOME/.config/lvim"
-# cp -r dotfiles/lunarVim/* "$HOME/.config/lvim"
+# cp -r dotfiles/lunarVim/* "$HOME/.config"
 # echo "lunarVim configuration copied successfully" 
 
 # Copy .zshrc
